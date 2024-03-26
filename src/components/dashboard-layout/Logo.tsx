@@ -15,7 +15,7 @@ function Logo() {
     >
       <SwitchCamera className="h-6 w-6 shrink-0 text-primary lg:hidden" />
       <p
-        className={` hidden bg-gradient-to-r from-orange-800 to-orange-300 bg-clip-text text-2xl font-bold text-transparent lg:block`}
+        className={` hidden bg-gradient-to-r from-rose-800 to-rose-400 bg-clip-text text-2xl font-bold text-transparent lg:block`}
       >
         Airbnb2024
       </p>

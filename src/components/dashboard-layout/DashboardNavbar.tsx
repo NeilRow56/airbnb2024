@@ -1,10 +1,19 @@
-import { Divide } from 'lucide-react'
 import { Button } from '../ui/button'
 import Link from 'next/link'
+import { ThemeToggle } from './ThemeToggle'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 
 function DashboardNavbar() {
   // Holding userId ready for auth
-  const userId = 'Tommy'
+  const user = 'Tommy'
 
   var myDate = new Date()
   var hrs = myDate.getHours()
@@ -23,14 +32,48 @@ function DashboardNavbar() {
         </div>
       </div>
       <div className=" flex  gap-6">
-        {userId ? (
-          <Button asChild size="sm" className="px-6  ">
-            <Link href="/sign-in">User</Link>
-          </Button>
+        <ThemeToggle />
+        {user ? (
+          <div className="flex w-full">
+            <div className=" space-x-2">
+              <DropdownMenu>
+                <DropdownMenuTrigger className=" text-primary">
+                  <Avatar className="mt-2 h-12 w-12">
+                    <AvatarImage src="/profile.jpg" />
+                    <AvatarFallback>DR</AvatarFallback>
+                  </Avatar>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <DropdownMenuLabel>
+                    <Avatar className="h-12 w-12 ">
+                      <AvatarImage src="/profile.jpg" />
+                      <AvatarFallback>DR</AvatarFallback>
+                    </Avatar>
+                  </DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem>
+                    <Link href="/hotel/new">New</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Link href="/edgestore">edgestore</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>Team</DropdownMenuItem>
+                  <DropdownMenuItem>Subscription</DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+            <div className="pt-4">
+              <Button asChild size="sm" className="ml-4  px-6 ">
+                <Link href="/login">{user}</Link>
+              </Button>
+            </div>
+          </div>
         ) : (
-          <Button asChild size="sm" className="px-6  ">
-            <Link href="/sign-in">Login</Link>
-          </Button>
+          <div>
+            <Button asChild size="sm" className="px-6  ">
+              <Link href="/login">Login</Link>
+            </Button>
+          </div>
         )}
       </div>
     </div>
