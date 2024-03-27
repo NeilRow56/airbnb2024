@@ -13,7 +13,7 @@ export default function UserNav() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className=" text-primary">
-        <Avatar className="mt-2 h-12 w-12">
+        <Avatar className="mt-1 h-12 w-12">
           <AvatarImage src="/profile.jpg" />
           <AvatarFallback>DR</AvatarFallback>
         </Avatar>
