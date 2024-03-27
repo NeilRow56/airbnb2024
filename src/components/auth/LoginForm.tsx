@@ -1,6 +1,8 @@
 'use client'
 
-import React, { useTransition } from 'react'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import * as z from 'zod'
 import { Input } from '@/components/ui/input'
 import {
   Form,
@@ -10,18 +12,25 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import * as z from 'zod'
-import { PasswordInput } from './PasswordInput'
+
 import { CardWrapper } from './CardWrapper'
 
-import { Button } from '@/components/ui/button'
+import { PasswordInput } from './PasswordInput'
+import { useTransition } from 'react'
+import { useRouter } from 'next/navigation'
+import { signIn } from 'next-auth/react'
+import { toast } from 'sonner'
 import { Loader2, LogIn } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 import { LoginSchema } from '@/schemas/auth'
 
-export default function LoginForm() {
+interface LoginFormProps {
+  callbackUrl?: string
+}
+
+export const LoginForm = ({ callbackUrl }: LoginFormProps) => {
   const [isPending, startTransition] = useTransition()
+  const router = useRouter()
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
     defaultValues: {
@@ -30,8 +39,21 @@ export default function LoginForm() {
     },
   })
 
-  const onSubmit = (values: z.infer<typeof LoginSchema>) => {
-    console.log(values)
+  const onSubmit = async (data: z.infer<typeof LoginSchema>) => {
+    const result = await signIn('credentials', {
+      redirect: false,
+      username: data.email,
+      password: data.password,
+    })
+
+    if (!result?.ok) {
+      toast.error(result?.error)
+      return
+    }
+    startTransition(() => {
+      router.push(callbackUrl ? callbackUrl : '/')
+    })
+    toast.success('Welcome To WP Auth 2024')
   }
 
   return (
@@ -52,9 +74,9 @@ export default function LoginForm() {
                   <FormControl>
                     <Input
                       {...field}
-                      disabled={isPending}
                       placeholder="john.doe@example.com"
                       type="email"
+                      disabled={isPending}
                     />
                   </FormControl>
                   <FormMessage />
@@ -70,8 +92,8 @@ export default function LoginForm() {
                   <FormControl>
                     <PasswordInput
                       {...field}
-                      disabled={isPending}
                       placeholder="Password"
+                      disabled={isPending}
                     />
                   </FormControl>
 
@@ -80,7 +102,7 @@ export default function LoginForm() {
               )}
             />
           </div>
-          <Button type="submit" className="max-w-[150px]">
+          <Button type="submit" className="max-w-[150px]" disabled={isPending}>
             {isPending ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4" /> Processing

@@ -21,14 +21,14 @@ import { CardWrapper } from './CardWrapper'
 import { Loader2, LogIn, MailIcon } from 'lucide-react'
 import { PasswordInput } from './PasswordInput'
 
-import Link from 'next/link'
-
 import { Button } from '@/components/ui/button'
 import { RegisterSchema } from '@/schemas/auth'
+import { register } from '@/actions/auth-actions/register'
+import { useRouter } from 'next/navigation'
 
 export const RegisterForm = () => {
   const [isPending, startTransition] = useTransition()
-
+  const router = useRouter()
   const form = useForm<z.infer<typeof RegisterSchema>>({
     resolver: zodResolver(RegisterSchema),
     defaultValues: {
@@ -41,7 +41,22 @@ export const RegisterForm = () => {
   })
 
   const onSubmit = (values: z.infer<typeof RegisterSchema>) => {
-    console.log(values)
+    startTransition(() => {
+      register(values)
+        .then((data) => {
+          if (data?.error) {
+            form.reset()
+            toast.error(data.error)
+          }
+
+          if (data?.success) {
+            form.reset()
+            toast.success(data.success)
+            router.push('/')
+          }
+        })
+        .catch(() => toast.error('Something went wrong'))
+    })
   }
 
   return (
