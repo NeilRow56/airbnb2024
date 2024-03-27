@@ -72,7 +72,7 @@ function NavLinks() {
               size: 'lg',
             })}
           >
-            <LinkIcon className="w-6" />
+            <LinkIcon className="w-6 text-primary" />
             <p
               className={`${cn('hidden lg:block', {
                 'font-extrabold': isActive,
