@@ -2,7 +2,6 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
@@ -10,7 +9,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import Link from 'next/link'
 import { auth } from '@/lib/auth'
 import { LogOut } from 'lucide-react'
-import { createAirbnbHome } from '@/actions'
+import { createAirbnbHome } from '@/actions/home'
 
 export default async function UserNav() {
   const session = await auth()

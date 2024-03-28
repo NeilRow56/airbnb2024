@@ -1,7 +1,7 @@
 'use server'
 
+import { db } from '@/lib/db'
 import { redirect } from 'next/navigation'
-import { db } from './lib/db'
 
 export async function createAirbnbHome({ userId }: { userId: string }) {
   const data = await db.home.findFirst({
