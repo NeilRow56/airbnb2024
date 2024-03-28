@@ -9,6 +9,11 @@ export function SelectCategory() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
   return (
     <div className="mx-auto mb-36 mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <input
+        type="hidden"
+        name="categoryName"
+        value={selectedCategory as string}
+      />
       {categoryItems.map((item) => {
         return (
           <div key={item.id} className="cursor-pointer">
