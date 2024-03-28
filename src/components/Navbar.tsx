@@ -12,8 +12,8 @@ export default async function Navbar() {
   const session = await auth()
   const user = session?.user
   return (
-    <nav className="fixed top-0 z-50  w-full border-b">
-      <div className="container mx-auto flex items-center justify-between px-5 py-2 lg:px-10">
+    <nav className="sticky z-50  w-full border-b">
+      <div className="container  mx-auto flex items-center justify-between px-5 py-2  lg:px-10">
         <div className="">
           <Link href="/dashboard">
             <Image

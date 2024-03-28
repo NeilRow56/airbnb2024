@@ -18,7 +18,7 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'instagram.fpnq13-1.fna.fbcdn.net',
+        hostname: 'a0.muscache.com',
       },
     ],
   },

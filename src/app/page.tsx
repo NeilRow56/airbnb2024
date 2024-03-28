@@ -1,12 +1,10 @@
 import SigninButton from '@/components/auth/SignInButton'
+import MapFilterItems from '@/components/MapFilterItems'
 
 export default async function LandingPage() {
   return (
-    <section className="flex  h-full  ">
-      <div className=" flex w-full flex-grow flex-col items-center justify-center ">
-        <h2 className=" mb-5 bg-green-300 p-3 text-primary">Landing page</h2>
-        <SigninButton />
-      </div>
+    <section className="container mx-auto px-5  pt-2 lg:px-10 ">
+      <MapFilterItems />
     </section>
   )
 }

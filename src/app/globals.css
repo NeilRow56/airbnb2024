@@ -555,6 +555,14 @@ body,
   body {
     @apply bg-background text-foreground antialiased;
   }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
 }
 
 @layer components {
