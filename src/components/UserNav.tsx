@@ -8,8 +8,12 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import Link from 'next/link'
+import { auth } from '@/lib/auth'
+import { LogOut } from 'lucide-react'
 
-export default function UserNav() {
+export default async function UserNav() {
+  const session = await auth()
+  const user = session?.user
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className=" text-primary">
@@ -18,22 +22,34 @@ export default function UserNav() {
           <AvatarFallback>DR</AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
-      <DropdownMenuContent>
-        <DropdownMenuLabel>
-          <Avatar className="h-12 w-12 ">
-            <AvatarImage src="/profile.jpg" />
-            <AvatarFallback>DR</AvatarFallback>
-          </Avatar>
-        </DropdownMenuLabel>
+      <DropdownMenuContent className="text-blue-600">
+        <DropdownMenuItem>
+          <form className="w-full ">
+            <button type="submit" text-start>
+              Airbnb your Home
+            </button>
+          </form>
+        </DropdownMenuItem>
+
+        <DropdownMenuItem>
+          <Link href="/my-homes">My Listings</Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem>
+          <Link href="/favorites">Favorites</Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem>
+          <Link href="/reservations">Reservations</Link>
+        </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
-          <Link href="/hotel/new">New</Link>
+        <DropdownMenuItem className="menuItem">
+          <LogOut size={20} />
+          <Link
+            className=" tex-lg text-primary transition-colors hover:text-primary/70"
+            href={'/api/auth/signout'}
+          >
+            Sign Out
+          </Link>
         </DropdownMenuItem>
-        <DropdownMenuItem>
-          <Link href="/edgestore">edgestore</Link>
-        </DropdownMenuItem>
-        <DropdownMenuItem>Team</DropdownMenuItem>
-        <DropdownMenuItem>Subscription</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   )

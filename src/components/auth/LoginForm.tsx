@@ -52,6 +52,7 @@ export const LoginForm = ({ callbackUrl }: LoginFormProps) => {
     }
     startTransition(() => {
       router.push(callbackUrl ? callbackUrl : '/')
+      router.refresh()
     })
     toast.success('Welcome To WP Auth 2024')
   }

@@ -94,7 +94,7 @@ function MoreDropdown() {
               <p>Switch appearance</p>
             </DropdownMenuItem>
             <DropdownMenuSeparator className="bg-gray-200" />
-            <DropdownMenuItem className="menuItem" onClick={() => {}}>
+            <DropdownMenuItem className="menuItem">
               <LogOut size={20} />
               <Link
                 className=" tex-lg text-sky-500 transition-colors hover:text-sky-600"
