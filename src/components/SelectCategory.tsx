@@ -6,7 +6,9 @@ import Image from 'next/image'
 import { useState } from 'react'
 
 export function SelectCategory() {
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
+  const [selectedCategory, setSelectedCategory] = useState<string | undefined>(
+    undefined
+  )
   return (
     <div className="mx-auto mb-36 mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       <input
