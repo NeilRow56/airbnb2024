@@ -10,10 +10,15 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import Link from 'next/link'
 import { auth } from '@/lib/auth'
 import { LogOut } from 'lucide-react'
+import { createAirbnbHome } from '@/actions'
 
 export default async function UserNav() {
   const session = await auth()
   const user = session?.user
+
+  const createHomeWithId = createAirbnbHome.bind(null, {
+    userId: user?.id as string,
+  })
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className=" text-primary">
@@ -24,7 +29,7 @@ export default async function UserNav() {
       </DropdownMenuTrigger>
       <DropdownMenuContent className="text-blue-600">
         <DropdownMenuItem>
-          <form className="w-full ">
+          <form action={createHomeWithId} className="w-full ">
             <button type="submit" text-start>
               Airbnb your Home
             </button>
