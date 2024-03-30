@@ -6,7 +6,6 @@ import { ThemeProvider } from '@/providers/ThemeProvider'
 import Navbar from '@/components/Navbar'
 import { AuthProvider } from '@/providers/AuthProvider'
 import { EdgeStoreProvider } from '@/providers/edgestore'
-import { ModalProvider } from '@/providers/ModalProvider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -44,7 +43,6 @@ export default function RootLayout({
                   },
                 }}
               />
-              <ModalProvider />
             </EdgeStoreProvider>
           </ThemeProvider>
         </AuthProvider>
