@@ -5,6 +5,8 @@ import { Toaster } from 'sonner'
 import { ThemeProvider } from '@/providers/ThemeProvider'
 import Navbar from '@/components/Navbar'
 import { AuthProvider } from '@/providers/AuthProvider'
+import { EdgeStoreProvider } from '@/providers/edgestore'
+import { ModalProvider } from '@/providers/ModalProvider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -28,19 +30,22 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <Navbar />
-            {children}
-            <Toaster
-              toastOptions={{
-                unstyled: true,
-                classNames: {
-                  error: 'bg-red-400',
-                  success: 'text-green-400',
-                  warning: 'text-yellow-400',
-                  info: 'bg-blue-400',
-                },
-              }}
-            />
+            <EdgeStoreProvider>
+              <Navbar />
+              {children}
+              <Toaster
+                toastOptions={{
+                  unstyled: true,
+                  classNames: {
+                    error: 'bg-red-400',
+                    success: 'text-green-400',
+                    warning: 'text-yellow-400',
+                    info: 'bg-blue-400',
+                  },
+                }}
+              />
+              <ModalProvider />
+            </EdgeStoreProvider>
           </ThemeProvider>
         </AuthProvider>
       </body>
