@@ -70,19 +70,11 @@ export async function CreateDescription(formData: FormData) {
   const title = formData.get('title') as string
   const description = formData.get('description') as string
   const price = formData.get('price')
-  const imageFile = formData.get('image') as File
+  const photo = formData.get('imageUrl') as string
   const homeId = formData.get('homeId') as string
-
   const guestNumber = formData.get('guest') as string
   const roomNumber = formData.get('room') as string
   const bathroomsNumber = formData.get('bathroom') as string
-
-  // const { data: imageData } = await supabase.storage
-  //   .from("images")
-  //   .upload(`${imageFile.name}-${new Date()}`, imageFile, {
-  //     cacheControl: "2592000",
-  //     contentType: "image/png",
-  //   });
 
   const data = await db.home.update({
     where: {
@@ -95,7 +87,7 @@ export async function CreateDescription(formData: FormData) {
       bedrooms: roomNumber,
       bathrooms: bathroomsNumber,
       guests: guestNumber,
-      // photo: imageData?.path,
+      photo: photo,
       addedDescription: true,
     },
   })
