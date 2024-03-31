@@ -1,5 +1,6 @@
 'use client'
 
+import { CreateDescription } from '@/actions/home'
 import { Counter } from '@/components/Counter'
 import { CreationBottomBar } from '@/components/CreationBottomBar'
 import { SingleImageDropzone } from '@/components/SingleImageDropzone'
@@ -48,7 +49,7 @@ export default function DescriptionPage({
           Please describe your home as good as you can!
         </h2>
       </div>
-      <form>
+      <form action={CreateDescription}>
         <input type="hidden" name="homeId" value={params.id} />
         <div className="mx-auto mb-36 mt-10 flex w-3/5 flex-col gap-y-5">
           <div className="flex flex-col gap-y-2">

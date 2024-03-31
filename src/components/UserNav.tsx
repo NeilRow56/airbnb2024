@@ -29,7 +29,7 @@ export default async function UserNav() {
       <DropdownMenuContent className="text-blue-600">
         <DropdownMenuItem>
           <form action={createHomeWithId} className="w-full ">
-            <button type="submit" text-start>
+            <button type="submit" className="text-start">
               Airbnb your Home
             </button>
           </form>
