@@ -29,6 +29,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "emoji-picker-react": "^4.9.2",
+    "leaflet": "^1.9.4",
     "lucide-react": "^0.363.0",
     "next": "13.5.6",
     "next-auth": "^4.24.5",
@@ -37,6 +38,7 @@
     "react-dom": "^18",
     "react-dropzone": "^14.2.3",
     "react-hook-form": "^7.51.1",
+    "react-leaflet": "^4.2.1",
     "react-textarea-autosize": "^8.5.3",
     "sonner": "^1.4.41",
     "tailwind-merge": "^2.2.2",
@@ -46,6 +48,7 @@
     "zustand": "^4.5.2"
   },
   "devDependencies": {
+    "@types/leaflet": "^1.9.8",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
