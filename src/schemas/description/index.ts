@@ -3,7 +3,9 @@ import { z } from 'zod'
 export const DescriptionSchema = z.object({
   id: z.string(),
   fileUrl: z.string().url(),
-  caption: z.string().optional(),
+  title: z.string().optional(),
+  description: z.string().optional(),
+  price: z.string().optional(),
 })
 
 export const CreateDescriptionSchema = DescriptionSchema.omit({ id: true })
